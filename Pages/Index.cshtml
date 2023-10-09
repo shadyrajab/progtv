@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">PROGTV - Desafio técnico</h1>
+    <p>Repositório <a href="https://github.com/shadyrajab/progtv">GitHub</a>.</p>
+    <form method="post" enctype="multipart/form-data" id="uploadForm">
+        <span>Selecionar arquivo</span>
+        <input type="file" name="file" />
+        <button type="button" value="Upload" id="submitButton" >Enviar</button>
+        <span style="color:green" id="submited"></span>
+    </form>
+    <div id="output"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    document.getElementById('submitButton').addEventListener('click', async () => {
+        let form = new FormData(document.getElementById('uploadForm'));
+        let response = await fetch('/Index?handler=GetMetadata', { 
+            method: 'POST',
+            body: form
+        });
+        if (response.ok) {
+            let metadata = await response.json();
+            document.getElementById("output").innerText = JSON.stringify(metadata)
+            document.getElementById("submited").innerText = "Arquivo enviado com sucesso!"
+        } else {
+            alert("Erro no upload do vídeo.")
+        }
+    });
+</script>
