@@ -3,5 +3,5 @@
 
 # Vídeo mostrando o funcionamento da página
 
-![](/utils/video.mp4)
+[![Assistir](https://www.youtube.com/watch?v=fFz9Ky5PSk8&ab_channel=ShadyRajab)
 
